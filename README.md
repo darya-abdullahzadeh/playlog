@@ -1,36 +1,132 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Playlog
+
+A video game logging and social platform inspired by Letterboxd and Backloggd.
+
+## Features
+
+- Browse and discover games (public, no sign-in required)
+- Search and filter games by genre, platform, and more
+- View detailed game information with screenshots
+- Read and write reviews (reviews are public, writing requires sign-in)
+- Track your game library with status (Playing, Completed, Dropped, etc.)
+- Create custom lists
+- Follow other users
+- Personal statistics dashboard
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Database**: PostgreSQL with Prisma ORM
+- **Styling**: Tailwind CSS v4
+- **Game Data**: RAWG API
+- **Deployment**: Prisma Accelerate for production
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18+ 
+- PostgreSQL (local installation)
+- RAWG API key ([Get one here](https://rawg.io/apidocs))
+
+### Installation
+
+1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd playlog
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up environment variables
+```bash
+cp .env.example .env
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Edit `.env` and add:
+- Your RAWG API key
+- Your local PostgreSQL connection string (replace username, password, database name)
 
-## Learn More
+Example:
+```
+DATABASE_URL="postgresql://postgres:password@localhost:5432/playlog?schema=public"
+DIRECT_URL="postgresql://postgres:password@localhost:5432/playlog?schema=public"
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Set up the database
+```bash
+# Create the database (if it doesn't exist)
+createdb playlog
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run migrations
+npm run db:migrate
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Generate Prisma Client
+npm run db:generate
+```
 
-## Deploy on Vercel
+5. Start the development server
+```bash
+npm run dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Database Commands
+
+- `npm run db:generate` - Generate Prisma Client
+- `npm run db:push` - Push schema changes to database (dev)
+- `npm run db:migrate` - Create and run migrations
+- `npm run db:migrate:deploy` - Deploy migrations (production)
+- `npm run db:studio` - Open Prisma Studio (database GUI)
+
+## Prisma Accelerate Setup (Production)
+
+1. Sign up at [Prisma Console](https://console.prisma.io/)
+2. Create a new Accelerate project
+3. Connect your production database
+4. Copy the Accelerate URL
+5. Add to your production environment:
+   ```
+   DATABASE_URL="prisma://accelerate.prisma-data.net/?api_key=YOUR_API_KEY"
+   ```
+
+## Project Structure
+
+```
+playlog/
+├── app/                    # Next.js app directory
+│   ├── games/             # Game pages
+│   ├── (auth)/            # Authentication pages (future)
+│   └── page.tsx           # Home page
+├── components/            # React components
+│   ├── games/            # Game-related components
+│   ├── home/             # Home page components
+│   └── layout/           # Layout components
+├── lib/                  # Utilities
+│   ├── prisma.ts         # Prisma client instance
+│   └── db.ts             # Database helpers
+├── prisma/               # Prisma schema and migrations
+│   └── schema.prisma     # Database schema
+└── services/             # API services
+    └── game.service.ts   # RAWG API service
+```
+
+## Environment Variables
+
+See `.env.example` for all required environment variables.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+MIT

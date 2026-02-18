@@ -1,8 +1,48 @@
 @import "tailwindcss";
 
+@theme {
+  /* New color palette */
+  --color-cream-white: #FBFEF9;
+  --color-vibrant-purple: #7F0799;
+  --color-ocean-blue: #0C6291;
+  --color-near-black: #000004;
+  --color-vibrant-orange: #FF9F1C;
+  
+  /* Legacy color names mapped to new palette for backward compatibility */
+  --color-purple-pristine: #7F0799;
+  --color-little-boy-blue: #0C6291;
+  --color-bright-navy-blue: #0C6291;
+  --color-free-speech-blue: #0C6291;
+  --color-blue-exult: #000004;
+  --color-corbeau: #000004;
+  --color-pretty-posie: #FBFEF9;
+  --color-curated-lilac: #7F0799;
+  --color-agate-violet: #000004;
+  --color-seven-seas: #0C6291;
+  --color-flickering-flame: #FF9F1C;
+}
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000004;
+  --foreground: #FBFEF9;
+  /* Custom color variables for use in inline styles */
+  --color-cream-white: #FBFEF9;
+  --color-vibrant-purple: #7F0799;
+  --color-ocean-blue: #0C6291;
+  --color-near-black: #000004;
+  --color-vibrant-orange: #FF9F1C;
+  
+  /* Legacy color names mapped to new palette */
+  --color-purple-pristine: #7F0799;
+  --color-little-boy-blue: #0C6291;
+  --color-bright-navy-blue: #0C6291;
+  --color-free-speech-blue: #0C6291;
+  --color-blue-exult: #000004;
+  --color-corbeau: #000004;
+  --color-pretty-posie: #FBFEF9;
+  --color-curated-lilac: #7F0799;
+  --color-agate-violet: #000004;
+  --color-seven-seas: #0C6291;
+  --color-flickering-flame: #FF9F1C;
 }
 
 @theme inline {
@@ -10,12 +50,29 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-cream-white: var(--color-cream-white);
+  --color-vibrant-purple: var(--color-vibrant-purple);
+  --color-ocean-blue: var(--color-ocean-blue);
+  --color-near-black: var(--color-near-black);
+  --color-vibrant-orange: var(--color-vibrant-orange);
+  /* Legacy mappings */
+  --color-purple-pristine: var(--color-purple-pristine);
+  --color-little-boy-blue: var(--color-little-boy-blue);
+  --color-bright-navy-blue: var(--color-bright-navy-blue);
+  --color-free-speech-blue: var(--color-free-speech-blue);
+  --color-blue-exult: var(--color-blue-exult);
+  --color-corbeau: var(--color-corbeau);
+  --color-pretty-posie: var(--color-pretty-posie);
+  --color-curated-lilac: var(--color-curated-lilac);
+  --color-agate-violet: var(--color-agate-violet);
+  --color-seven-seas: var(--color-seven-seas);
+  --color-flickering-flame: var(--color-flickering-flame);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000004;
+    --foreground: #FBFEF9;
   }
 }
 
